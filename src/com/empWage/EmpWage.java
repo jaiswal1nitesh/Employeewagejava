@@ -5,8 +5,11 @@ import java.util.Random;
 public class EmpWage {
     static final int empPresent = 1;
     static final int empAbsent = 0;
-    static final int empPartTime= 2;
+    static final int empPartTime = 2;
     static int empWagePerHours = 20;
+    static int empFullTimeWorkingPerHours = 8;
+    static int empPartTimeWorkingPerHours = 4;
+    static int empAbsentimeWorkingPerHours = 0;
     static int empTotalWage;
 
 
@@ -17,23 +20,25 @@ public class EmpWage {
         Random rand = new Random();
         int num = rand.nextInt(0, 3);
 
-        if (num == empAbsent) {
-            System.out.println("Employee is Absent");
-            int empWorkingPerHours = 0;
-            empTotalWage = empWorkingPerHours * empWagePerHours;
 
+        switch (num) {
+            case empAbsent:
+                System.out.println("Employee is Absent");
 
-        } else if (num==empPartTime) {
-            System.out.println("Employee is Part Time");
-            int empWorkingPerHours = 4;
-            empTotalWage = empWorkingPerHours * empWagePerHours;
+                empTotalWage = empAbsentimeWorkingPerHours * empWagePerHours;
+                break;
+            case empPartTime:
+                System.out.println("Employee is Part Time");
 
-        } else {
-            int empWorkingPerHours = 8;
-            System.out.println("Employee is Present");
-            empTotalWage = empWorkingPerHours * empWagePerHours;
+                empTotalWage = empPartTimeWorkingPerHours * empWagePerHours;
+                break;
+
+            case empPresent:
+
+                System.out.println("Employee is Present");
+                empTotalWage =empFullTimeWorkingPerHours * empWagePerHours;
         }
-        System.out.println(empTotalWage);
+        System.out.println("Employee salary is   "+empTotalWage);
 
 
     }
