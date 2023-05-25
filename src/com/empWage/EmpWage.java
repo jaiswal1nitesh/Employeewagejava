@@ -11,6 +11,7 @@ public class EmpWage {
     static int empPartTimeWorkingPerHours = 4;
     static int empAbsentimeWorkingPerHours = 0;
     static int empTotalWage;
+    static int numDayPerMonth = 20;
 
 
     public static void main(String[] args) {
@@ -18,27 +19,30 @@ public class EmpWage {
 
 
         Random rand = new Random();
-        int num = rand.nextInt(0, 3);
+        //  int num = rand.nextInt(0, 3);
+        int totalSalary = 0;
 
+        for (int day = 0; day <= numDayPerMonth; day++) {
+            int num = rand.nextInt(0, 3);
+            switch (num) {
+                case empAbsent:
+                    empTotalWage = empAbsentimeWorkingPerHours * empWagePerHours;
+                    totalSalary = totalSalary + empTotalWage;
+                    break;
+                case empPartTime:
+                    empTotalWage = empPartTimeWorkingPerHours * empWagePerHours;
+                    totalSalary = totalSalary + empTotalWage;
+                    break;
 
-        switch (num) {
-            case empAbsent:
-                System.out.println("Employee is Absent");
+                case empPresent:
+                    empTotalWage = empFullTimeWorkingPerHours * empWagePerHours;
+                    totalSalary = totalSalary + empTotalWage;
+                    break;
 
-                empTotalWage = empAbsentimeWorkingPerHours * empWagePerHours;
-                break;
-            case empPartTime:
-                System.out.println("Employee is Part Time");
+            }
 
-                empTotalWage = empPartTimeWorkingPerHours * empWagePerHours;
-                break;
-
-            case empPresent:
-
-                System.out.println("Employee is Present");
-                empTotalWage =empFullTimeWorkingPerHours * empWagePerHours;
         }
-        System.out.println("Employee salary is   "+empTotalWage);
+        System.out.println("Employee salary is   " + totalSalary);
 
 
     }
