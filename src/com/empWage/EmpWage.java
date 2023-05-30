@@ -6,12 +6,11 @@ public class EmpWage {
     static final int empPresent = 1;
     static final int empAbsent = 0;
     static final int empPartTime = 2;
+    static int empWorkingHours ;
     static int empWagePerHours = 20;
-    static int empFullTimeWorkingPerHours = 8;
-    static int empPartTimeWorkingPerHours = 4;
-    static int empAbsentimeWorkingPerHours = 0;
     static int empTotalWage;
     static int numDayPerMonth = 20;
+    static int day = 1;
 
 
     public static void main(String[] args) {
@@ -19,30 +18,51 @@ public class EmpWage {
 
 
         Random rand = new Random();
-        //  int num = rand.nextInt(0, 3);
         int totalSalary = 0;
-
-        for (int day = 0; day <= numDayPerMonth; day++) {
+        int totalWorkingHours = 0;
+        while (day < 20 && totalWorkingHours < 100) {
             int num = rand.nextInt(0, 3);
             switch (num) {
                 case empAbsent:
-                    empTotalWage = empAbsentimeWorkingPerHours * empWagePerHours;
-                    totalSalary = totalSalary + empTotalWage;
+                    int empWorkingHours = 0;
+                    empTotalWage = empWorkingHours * empWagePerHours;
+                    totalWorkingHours+=empWorkingHours;
+
                     break;
                 case empPartTime:
-                    empTotalWage = empPartTimeWorkingPerHours * empWagePerHours;
-                    totalSalary = totalSalary + empTotalWage;
+                    empWorkingHours = 4;
+                    empTotalWage = empWorkingHours * empWagePerHours;
+                    totalWorkingHours+=empWorkingHours;
                     break;
 
                 case empPresent:
-                    empTotalWage = empFullTimeWorkingPerHours * empWagePerHours;
-                    totalSalary = totalSalary + empTotalWage;
+                    empWorkingHours = 8;
+                    empTotalWage = empWorkingHours * empWagePerHours;
+                    totalWorkingHours+=empWorkingHours;
                     break;
 
             }
+            totalSalary = totalSalary + empTotalWage;
+
+                      if(totalWorkingHours>100){
+                          int extraWorkingHrs=totalWorkingHours-100;
+                          totalWorkingHours=totalWorkingHours-extraWorkingHrs;
+                          totalSalary = totalSalary + empTotalWage;}
+                      else {
+                          int salary= empWagePerHours* empWorkingHours;
+                          totalSalary=totalSalary+salary;
+
+
+
+
+
+                      }
+                      day++;
+
 
         }
         System.out.println("Employee salary is   " + totalSalary);
+        System.out.println("Day is  " + day + "  and Total Working Hours  is  " + totalWorkingHours);
 
 
     }
